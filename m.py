@@ -285,7 +285,7 @@ def start_attack_reply(message, target, port, time):
 # Dictionary to store the last time each user ran the /bgmi command
 bgmi_cooldown = {}
 
-COOLDOWN_TIME =100
+COOLDOWN_TIME =10
 
 # Handler for /bgmi command
 @bot.message_handler(commands=['bgmi'])
@@ -296,7 +296,7 @@ def handle_bgmi(message):
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
             if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < COOLDOWN_TIME:
-                response = "You Are On Cooldown ❌. Please Wait 200 second from latest attack"
+                response = "You Are On Cooldown ❌. Please Wait 10 second from latest attack"
                 bot.reply_to(message, response)
                 return
             # Update the last time the user ran the command
